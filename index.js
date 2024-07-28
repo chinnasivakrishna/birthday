@@ -11,11 +11,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false
-}));
+
 
 app.get('/', (req, res) => {
     res.json({
