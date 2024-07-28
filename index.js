@@ -7,7 +7,11 @@ const cron = require("node-cron");
 const { sendBirthdayEmail } = require("./mailer");
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://birthday-mail-1y1h3cslk-sivas-projects-70b20ed5.vercel.app/"],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 const employee = require("./Routes/EmployeeDOB");
