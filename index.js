@@ -49,7 +49,7 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('49 9 * * *', () => {
+cron.schedule('57 10 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });
