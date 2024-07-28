@@ -7,12 +7,20 @@ const cron = require("node-cron");
 const { sendBirthdayEmail } = require("./mailer");
 const app = express();
 
-app.use(cors({
-  origin: ["https://birthday-mail-ten.vercel.app/"],
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+app.use(cors());
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.get('/', (req, res) => {
+    res.json({
+        message: 'The API is working!'
+    });
+});
 
 const employee = require("./Routes/EmployeeDOB");
 const { Emp } = require("./Model/Employee");
