@@ -41,7 +41,9 @@ const getDataFromDB = async () => {
     const month1 = date1.getMonth() + 1;
     const day1 = date1.getDate();
     if (day == day1 && month == month1) {
-      console.log(`It's ${data[i].EmpName}'s birthday today!`);
+      console.log(date,day,month)
+      console.log(date1,day1,month1)
+      console.log(`It's ${data[i].EmpName},${data[i]._id}'s birthday today!`);
       await sendBirthdayEmail(data[i].Email, data[i].EmpName);
     } else {
       console.log(`Today is not ${data[i].EmpName}'s birthday.`);
@@ -49,7 +51,7 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('57 10 * * *', () => {
+cron.schedule('18 11 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });

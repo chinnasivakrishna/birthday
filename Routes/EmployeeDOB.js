@@ -10,6 +10,7 @@ employee.route("/add").post(async (req, res) => {
     const DOB = new Emp(req.body)
     console.log(DOB)
     await DOB.save();
+    res.json("Success")
     
   } catch (error) {
     res.json({ message: error })
