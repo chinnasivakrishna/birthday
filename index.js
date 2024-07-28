@@ -8,7 +8,7 @@ const { sendBirthdayEmail } = require("./mailer");
 const app = express();
 
 app.use(cors({
-  origin: ["https://birthday-mail-1y1h3cslk-sivas-projects-70b20ed5.vercel.app/"],
+  origin: ["https://birthday-mail-ten.vercel.app/"],
   methods: ["GET", "POST"],
   credentials: true
 }));
