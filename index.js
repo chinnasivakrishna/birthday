@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cron = require("node-cron");
 const { sendBirthdayEmail } = require("./mailer");
+require('./db');
 const app = express();
 
 app.use(cors());
@@ -29,13 +30,6 @@ const date = new Date();
 const month = date.getMonth() + 1;
 const day = date.getDate();
 console.log(date);
-const DB_URL = process.env.MONGO_URL;
-
-mongoose.connect(DB_URL, {
-  serverSelectionTimeoutMS: 3000,
-})
-  .then(() => console.log("Database Connected"))
-  .catch(() => console.log("Database not connected"));
 
 app.use("/api/employees", employee);
 
