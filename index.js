@@ -35,28 +35,7 @@ app.use("/api/employees", employee);
 
 app.get("/send", async (req, res) => {
   try {
-    const data = await Emp.find();
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-
-    for (let i = 0; i < data.length; i++) {
-      const date1 = data[i].DOB;
-      const month1 = date1.getMonth() + 1;
-      const day1 = date1.getDate();
-
-      if (day == day1 && month == month1) {
-        console.log(`It's ${data[i].EmpName}, ${data[i]._id}'s birthday today!`);
-        // Send email asynchronously
-        await sendBirthdayEmail(data[i].Email, data[i].EmpName).then(() => {
-          console.log(`Birthday email sent to ${data[i].EmpName}`);
-        }).catch((error) => {
-          console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
-        });
-      } else {
-        console.log(`Today is not ${data[i].EmpName}'s birthday.`);
-      }
-    }
+    getDataFromDB();
     res.send('Birthday check complete');
   } catch (err) {
     console.error('Error during birthday check', err);
@@ -97,7 +76,7 @@ const getDataFromDB = async () => {
   app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('49 15 * * *', () => {
+cron.schedule('50 15 * * *', () => {
   app.get('/favicon.ico', (req, res) => res.status(204));
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
