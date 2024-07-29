@@ -50,7 +50,7 @@ const getDataFromDB = async () => {
 
     for (let i = 0; i < data.length; i++) {
       const date1 = data[i].DOB;
-      const month1 = date1.getMonth() + 1;
+      const month1 = date1.getMonth();
       const day1 = date1.getDate();
 
       if (day == day1 && month == month1) {
@@ -72,7 +72,7 @@ const getDataFromDB = async () => {
 };
 
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('0 0 * * *', () => {
+cron.schedule('* * * * *', () => {
   console.log("hii")
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
