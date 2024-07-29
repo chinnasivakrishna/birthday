@@ -33,7 +33,8 @@ console.log(date);
 
 app.use("/api/employees", employee);
 
-app.get("/send", async(req, res)=> {
+app.get("/send", async (req, res) => {
+  try{
   const data = await Emp.find();
   for (let i = 0; i < data.length; i++) {
     const date1 = data[i].DOB;
@@ -47,7 +48,8 @@ app.get("/send", async(req, res)=> {
     } else {
       console.log(`Today is not ${data[i].EmpName}'s birthday.`);
     }
-  }
+    }
+    }
 })
 
 const getDataFromDB = async () => {
@@ -68,7 +70,7 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('41 9 * * *', () => {
+cron.schedule('05 11 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });
