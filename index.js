@@ -81,7 +81,7 @@ function ignoreFavicon(req, res, next) {
   next();
 }
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('34 16 * * *', () => {
+cron.schedule('39 16 * * *', () => {
   app.use(ignoreFavicon);
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
