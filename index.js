@@ -68,38 +68,38 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 
 
 const getDataFromDB = async () => {
-  console.log("Fetching data from DB at midnight");
+  console.log('Fetching data from DB at scheduled time');
   try {
     const data = await Emp.find();
     const today = new Date();
     const day = today.getDate();
     const month = today.getMonth() + 1;
 
-    for (let i = 0; i < data.length; i++) {
-      const date1 = data[i].DOB;
-      const month1 = date1.getMonth() + 1;
-      const day1 = date1.getDate();
+    const birthdayPromises = data.map(async (employee) => {
+      const dob = employee.DOB;
+      const month1 = dob.getMonth() + 1;
+      const day1 = dob.getDate();
 
-      if (day == day1 && month == month1) {
-        console.log(`It's ${data[i].EmpName}, ${data[i]._id}'s birthday today!`);
-        // Send email asynchronously
-        await sendBirthdayEmail(data[i].Email, data[i].EmpName).then(() => {
-          console.log(`Birthday email sent to ${data[i].EmpName}`);
-        }).catch((error) => {
-          console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
-        });
+      if (day === day1 && month === month1) {
+        console.log(`It's ${employee.EmpName}, ${employee._id}'s birthday today!`);
+        try {
+          await sendBirthdayEmail(employee.Email, employee.EmpName);
+          console.log(`Birthday email sent to ${employee.EmpName}`);
+        } catch (error) {
+          console.error(`Failed to send birthday email to ${employee.EmpName}`, error);
+        }
       } else {
-        console.log(`Today is not ${data[i].EmpName}'s birthday.`);
+        console.log(`Today is not ${employee.EmpName}'s birthday.`);
       }
-    }
-    res.send('Birthday check complete');
+    });
+
+    await Promise.all(birthdayPromises);
   } catch (err) {
     console.error('Error during birthday check', err);
-    res.status(500).send('Internal Server Error');
   }
 };
 
-cron.schedule('20 15 * * *', () => {
+cron.schedule('24 15 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });
