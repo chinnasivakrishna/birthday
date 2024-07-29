@@ -43,29 +43,10 @@ app.get("/send", async (req, res) => {
   }
 });
 
-function ignoreFavicon(req, res, next) {
-  if (req.originalUrl.includes('favicon.ico')) {
-    console.log("Done")
-    res.status(204)
-  }
-  next();
-}
-app.use(ignoreFavicon);
-// Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('59 16 * * *', () => {
-  console.log("hii")
-  getDataFromDB();
-  console.log('Scheduled task ran at the specified time');
-});
-
-
 const getDataFromDB = async () => {
   console.log('Fetching data from DB at scheduled time');
   try {
     const data = await Emp.find();
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
 
     for (let i = 0; i < data.length; i++) {
       const date1 = data[i].DOB;
@@ -89,6 +70,24 @@ const getDataFromDB = async () => {
     console.error('Error during birthday check', err);
   }
 };
+
+function ignoreFavicon(req, res, next) {
+  if (req.originalUrl.includes('favicon.ico')) {
+    console.log("Done")
+    res.status(204)
+  }
+  next();
+}
+app.use(ignoreFavicon);
+// Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
+cron.schedule('11 17 * * *', () => {
+  console.log("hii")
+  getDataFromDB();
+  console.log('Scheduled task ran at the specified time');
+});
+
+
+
 
 app.listen(8080, () => {
   console.log("Server is running");
