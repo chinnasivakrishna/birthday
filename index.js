@@ -64,6 +64,9 @@ app.get("/send", async (req, res) => {
   }
 });
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
+
 const getDataFromDB = async () => {
   console.log("Fetching data from DB at midnight");
   try {
@@ -96,7 +99,7 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('10 15 * * *', () => {
+cron.schedule('20 15 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });
