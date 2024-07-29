@@ -15,7 +15,6 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 
 app.get('/', (req, res) => {
