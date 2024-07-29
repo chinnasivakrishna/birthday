@@ -83,7 +83,7 @@ app.use( function(req, res, next) {
   
 });
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('31 16 * * *', () => {
+cron.schedule('34 16 * * *', () => {
   app.get('/favicon.ico', (req, res) => res.status(204));
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
