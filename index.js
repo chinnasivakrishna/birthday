@@ -72,32 +72,32 @@ const getDataFromDB = async () => {
     const day = today.getDate();
     const month = today.getMonth() + 1;
 
-    const birthdayPromises = data.map(async (employee) => {
-      const dob = employee.DOB;
-      const month1 = dob.getMonth() + 1;
-      const day1 = dob.getDate();
+    for (let i = 0; i < data.length; i++) {
+      const date1 = data[i].DOB;
+      const month1 = date1.getMonth() + 1;
+      const day1 = date1.getDate();
 
-      if (day === day1 && month === month1) {
-        console.log(`It's ${employee.EmpName}, ${employee._id}'s birthday today!`);
-        try {
-          await sendBirthdayEmail(employee.Email, employee.EmpName);
-          console.log(`Birthday email sent to ${employee.EmpName}`);
-        } catch (error) {
-          console.error(`Failed to send birthday email to ${employee.EmpName}`, error);
-        }
+      if (day == day1 && month == month1) {
+        console.log(`It's ${data[i].EmpName}, ${data[i]._id}'s birthday today!`);
+        // Send email asynchronously
+        await sendBirthdayEmail(data[i].Email, data[i].EmpName).then(() => {
+          console.log(`Birthday email sent to ${data[i].EmpName}`);
+        }).catch((error) => {
+          console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
+        });
       } else {
-        console.log(`Today is not ${employee.EmpName}'s birthday.`);
+        console.log(`Today is not ${data[i].EmpName}'s birthday.`);
       }
-    });
+    }
 
-    await Promise.all(birthdayPromises);
   } catch (err) {
     console.error('Error during birthday check', err);
   }
 };
 
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('34 15 * * *', () => {
+cron.schedule('28 15 * * *', () => {
+  app.get('/favicon.ico', (req, res) => res.status(204).end());
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
 });
