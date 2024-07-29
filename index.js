@@ -46,7 +46,7 @@ app.get("/send", async (req, res) => {
 function ignoreFavicon(req, res, next) {
   if (req.originalUrl.includes('favicon.ico')) {
     console.log("Done")
-    res.status(204).end()
+    res.status(204)
   }
   next();
 }
