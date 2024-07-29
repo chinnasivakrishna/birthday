@@ -34,23 +34,26 @@ console.log(date);
 app.use("/api/employees", employee);
 
 app.get("/send", async (req, res) => {
-  try{
-  const data = await Emp.find();
-  for (let i = 0; i < data.length; i++) {
-    const date1 = data[i].DOB;
-    const month1 = date1.getMonth() + 1;
-    const day1 = date1.getDate();
-    if (day == day1 && month == month1) {
-      console.log(date,day,month)
-      console.log(date1,day1,month1)
-      console.log(`It's ${data[i].EmpName},${data[i]._id}'s birthday today!`);
-      await sendBirthdayEmail(data[i].Email, data[i].EmpName);
-    } else {
-      console.log(`Today is not ${data[i].EmpName}'s birthday.`);
+  try {
+    const data = await Emp.find();
+    for (let i = 0; i < data.length; i++) {
+      const date1 = data[i].DOB;
+      const month1 = date1.getMonth() + 1;
+      const day1 = date1.getDate();
+      if (day == day1 && month == month1) {
+        console.log(date, day, month)
+        console.log(date1, day1, month1)
+        console.log(`It's ${data[i].EmpName},${data[i]._id}'s birthday today!`);
+        await sendBirthdayEmail(data[i].Email, data[i].EmpName);
+      } else {
+        console.log(`Today is not ${data[i].EmpName}'s birthday.`);
+      }
     }
-    }
-    }
-})
+  }
+  catch(err) {
+    console.log("hii")
+  }
+});
 
 const getDataFromDB = async () => {
   console.log("Fetching data from DB at midnight");
@@ -70,7 +73,7 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('05 11 * * *', () => {
+cron.schedule('07 11 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });
