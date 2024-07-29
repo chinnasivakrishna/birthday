@@ -35,7 +35,7 @@ app.use("/api/employees", employee);
 
 app.get("/send", async (req, res) => {
   try {
-    getDataFromDB();
+    await getDataFromDB();
     res.send('Birthday check complete');
   } catch (err) {
     console.error('Error during birthday check', err);
