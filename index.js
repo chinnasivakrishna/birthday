@@ -73,10 +73,10 @@ const getDataFromDB = async () => {
     console.error('Error during birthday check', err);
   }
 };
-  app.get('/favicon.ico', (req, res) => res.status(204).end());
+  app.get('/favicon.ico', (req, res) => res.status(204).next());
 
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('50 15 * * *', () => {
+cron.schedule('31 16 * * *', () => {
   app.get('/favicon.ico', (req, res) => res.status(204));
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
