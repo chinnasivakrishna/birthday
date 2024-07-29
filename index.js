@@ -51,7 +51,7 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('28 9 * * *', () => {
+cron.schedule('0 0 * * *', () => {
   getDataFromDB();
   console.log("Scheduled task ran at midnight");
 });
