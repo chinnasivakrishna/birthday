@@ -15,6 +15,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 
 app.get('/', (req, res) => {
@@ -64,9 +65,6 @@ app.get("/send", async (req, res) => {
   }
 });
 
-app.get('/favicon.ico', (req, res) => res.status(204));
-
-
 const getDataFromDB = async () => {
   console.log('Fetching data from DB at scheduled time');
   try {
@@ -99,9 +97,10 @@ const getDataFromDB = async () => {
   }
 };
 
-cron.schedule('24 15 * * *', () => {
+// Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
+cron.schedule('28 15 * * *', () => {
   getDataFromDB();
-  console.log("Scheduled task ran at midnight");
+  console.log('Scheduled task ran at the specified time');
 });
 
 app.listen(8080, () => {
