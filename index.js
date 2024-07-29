@@ -97,7 +97,7 @@ const getDataFromDB = async () => {
   app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('42 15 * * *', () => {
+cron.schedule('* * * * *', () => {
   app.get('/favicon.ico', (req, res) => res.status(204));
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
