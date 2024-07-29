@@ -48,7 +48,7 @@ app.get("/send", async (req, res) => {
       if (day == day1 && month == month1) {
         console.log(`It's ${data[i].EmpName}, ${data[i]._id}'s birthday today!`);
         // Send email asynchronously
-        sendBirthdayEmail(data[i].Email, data[i].EmpName).then(() => {
+        await sendBirthdayEmail(data[i].Email, data[i].EmpName).then(() => {
           console.log(`Birthday email sent to ${data[i].EmpName}`);
         }).catch((error) => {
           console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
