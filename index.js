@@ -9,7 +9,7 @@ require('./db');
 const app = express();
 
 app.use(cors({
-  origin: ["https://birthday-mail-ten.vercel.app"],
+  origin: ["https://birthday-mail-ten.vercel.app/"],
   methods: ["GET", "POST"],
   credentials:true
 }));
