@@ -74,10 +74,10 @@ const getDataFromDB = async () => {
 cron.schedule('* * * * *', () => {
   hour = date.getHours();
   minute = date.getMinutes();
-  console.log(hour == 2 && minute == 55)
+  console.log(hour == 3 && minute == 1)
   console.log(hour)
   console.log(minute)
-  if (hour == 8 && minute == 20) {
+  if (hour == 3 && minute == 1) {
     console.log("hii")
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
