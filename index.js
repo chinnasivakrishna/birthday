@@ -72,10 +72,15 @@ const getDataFromDB = async () => {
 };
 
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('0 0 * * *', () => {
-  console.log("hii")
+cron.schedule('* * * * *', () => {
+  hour = date.getHours();
+  minute = date.getMinutes();
+  if (hour == 8 && minute == 0) {
+    console.log("hii")
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
+  }
+  
 });
 
 app.listen(8080, () => {
