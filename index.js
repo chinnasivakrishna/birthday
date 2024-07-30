@@ -70,12 +70,13 @@ const getDataFromDB = async () => {
     console.error('Error during birthday check', err);
   }
 };
-
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
 cron.schedule('* * * * *', () => {
   hour = date.getHours();
   minute = date.getMinutes();
-  if (hour == 8 && minute == 0) {
+  console.log(hour == 8 && minute == 9)
+  console.log(minute)
+  if (hour == 8 && minute == 9) {
     console.log("hii")
   getDataFromDB();
   console.log('Scheduled task ran at the specified time');
