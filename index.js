@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 const employee = require("./Routes/EmployeeDOB");
+const user = require("./Routes/UserRoute");
 const { Emp } = require("./Model/Employee");
 
 const date = new Date();
@@ -33,6 +34,7 @@ const day = date.getDate();
 console.log(date);
 
 app.use("/api/employees", employee);
+app.use("/api/user", user);
 
 app.get("/send", async (req, res) => {
   try {
@@ -72,7 +74,7 @@ const getDataFromDB = async () => {
   }
 };
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('30 18 * * *', () => {
+cron.schedule('50 10 * * *', () => {
   const date2 = new Date();
   hour = date2.getHours();
   minute = date2.getMinutes();
