@@ -78,7 +78,6 @@ cron.schedule('* * * * *', () => {
   const date2 = new Date();
   hour = date2.getHours();
   minute = date2.getMinutes();
-  console.log(hour == 3 && minute == 1)
   console.log(hour)
   console.log(minute)
   
