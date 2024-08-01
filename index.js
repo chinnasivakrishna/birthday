@@ -55,7 +55,7 @@ const getDataFromDB = async () => {
       const date1 = data[i].DOB;
       const month1 = date1.getMonth() + 1;
       const day1 = date1.getDate();
-
+      console.log(date1)
       if (day == day1 && month == month1) {
         console.log(`It's ${data[i].EmpName}, ${data[i]._id},${data[i].DOB}'s birthday today!`);
         // Send email asynchronously
@@ -65,7 +65,7 @@ const getDataFromDB = async () => {
           console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
         });
       } else {
-        console.log(`Today is not ${data[i].EmpName}, ${data[i].DOB}'s birthday.`);
+        console.log(`Today is not ${data[i].EmpName}'s birthday.`);
       }
     }
 
