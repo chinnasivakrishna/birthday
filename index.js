@@ -79,7 +79,6 @@ cron.schedule('30 18 * * *', () => {
   hour = date2.getHours();
   minute = date2.getMinutes();
   console.log(hour)
-  console.log(minute)
   
     console.log("hii")
   getDataFromDB();
