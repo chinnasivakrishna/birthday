@@ -10,7 +10,7 @@ user.route("/add").post(async (req, res) => {
   try {
     const user = new User(req.body)
     await user.save();
-    res.json("Done")
+    res.json("Success")
     
   } catch (error) {
     res.json({ message: error })
