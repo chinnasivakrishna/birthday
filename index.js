@@ -65,7 +65,7 @@ const getDataFromDB = async () => {
           console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
         });
       } else {
-        console.log(`Today is not ${data[i].EmpName}'s birthday.`);
+        console.log(`Today is not ${data[i].EmpName}, ${data[i].DOB}'s birthday.`);
       }
     }
 
