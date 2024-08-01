@@ -28,7 +28,7 @@ const user = require("./Routes/UserRoute");
 const { Emp } = require("./Model/Employee");
 
 const date = new Date();
-date.setDate(date.getDate() + 1)
+date.setDate(date.getDate())
 const month = date.getMonth() + 1;
 const day = date.getDate();
 console.log(date);
