@@ -59,7 +59,7 @@ const getDataFromDB = async () => {
       if (day == day1 && month == month1) {
         console.log(`It's ${data[i].EmpName}, ${data[i]._id}'s birthday today!`);
         // Send email asynchronously
-        await sendBirthdayEmail(data[i].Email, data[i].EmpName).then(() => {
+        await sendBirthdayEmail(data[i].Email, data[i].EmpName, data[i].User).then(() => {
           console.log(`Birthday email sent to ${data[i].EmpName}`);
         }).catch((error) => {
           console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);

@@ -24,7 +24,7 @@ user.route("/login").post(async (req, res) => {
     const user =await User.findOne({ Email, Password })
     console.log(user)
     if (user) {
-      res.send({message:"Success"})
+      res.send({user})
     }
     else {
       res.send({message:"Failed"})

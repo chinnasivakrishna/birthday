@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const sendBirthdayEmail = async (email, name) => {
+const sendBirthdayEmail = async (email, name,user) => {
   const mailOptions = {
     from: 'chinnasivakrishna2003@gmail.com',
     to: email,
@@ -26,6 +26,7 @@ const sendBirthdayEmail = async (email, name) => {
           </div>
           <p style="font-size: 16px;">May all your wishes come true and may you have a fantastic year ahead. Thank you for being a valued member of our team. We look forward to celebrating many more birthdays with you!</p>
           <p style="font-size: 18px; font-weight: bold;">Best wishes to you</p>
+          <p style="font-size: 18px; font-weight: bold;">from -${user}</p>
           
         </div>
       </div>
