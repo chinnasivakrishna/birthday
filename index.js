@@ -59,7 +59,7 @@ const getDataFromDB = async () => {
       if (day == day1 && month == month1) {
         console.log(`It's ${data[i].EmpName}, ${data[i]._id},${data[i].DOB}'s birthday today!`);
         // Send email asynchronously
-        await sendBirthdayEmail(data[i].Email, data[i].EmpName, data[i].User).then(() => {
+        await sendBirthdayEmail(data[i].Email, data[i].EmpName, data[i].Name).then(() => {
           console.log(`Birthday email sent to ${data[i].EmpName}`);
         }).catch((error) => {
           console.error(`Failed to send birthday email to ${data[i].EmpName}`, error);
@@ -74,7 +74,7 @@ const getDataFromDB = async () => {
   }
 };
 // Schedule the cron job to run at the specified time (e.g., 10:15 AM every day)
-cron.schedule('31 18 * * *', () => {
+cron.schedule('* * * * *', () => {
   const date2 = new Date();
   hour = date2.getHours();
   minute = date2.getMinutes();
