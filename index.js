@@ -53,10 +53,9 @@ const getDataFromDB = async () => {
 
     for (let i = 0; i < data.length; i++) {
       const date1 = data[i].DOB;
-      console.log(date1)
       const month1 = date1.getMonth() + 1;
       const day1 = date1.getDate();
-      console.log(date1)
+      console.log(day,day1)
       if (day == day1 && month == month1) {
         console.log(`It's ${data[i].EmpName}, ${data[i]._id},${data[i].DOB}'s birthday today!`);
         // Send email asynchronously
